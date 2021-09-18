@@ -1,0 +1,10 @@
+#!/bin/bash
+# normal cpu stuff: allocate cpus, memory
+#SBATCH --ntasks=1 --cpus-per-task=2 --mem=10G
+#We expect that our program should not run langer than 2 hours
+#Note that a program will be killed once it exceeds this time!
+#SBATCH --time=01:00:00
+#SBATCH --job-name="val"
+#SBATCH --output="val.log"
+
+bash val.sh

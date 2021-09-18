@@ -1,0 +1,20 @@
+#!/bin/sh
+## In current working directory 
+#$ -cwd 
+## Resource type F: qty 1
+#$ -l f_node=1
+## maximum run time 
+#$ -l h_rt=14:00:00
+#$ -N train
+#$ -m abe
+#$ -M emanuele@di.ku.dk
+## Initialize module command (don't remove)
+. /etc/profile.d/modules.sh
+## Load CUDA environment 
+module load cuda/10.1.105
+module load gcc/8.3.0-cuda
+
+export PATH="$HOME/libs/anaconda3/bin${PATH:+:${PATH}}"
+. $HOME/libs/anaconda3/etc/profile.d/conda.sh
+
+bash train.sh
