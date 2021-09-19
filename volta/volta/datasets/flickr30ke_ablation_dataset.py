@@ -428,8 +428,8 @@ class FlickrVis4LangDataset(Dataset):
         masked_label = np.logical_or(masked_label, (overlaps > overlap_threshold).max(1)[0])
         if self._add_global_imgfeat == "first":
             masked_label[0] = 0
-        else:
-            raise NotImplementedError
+        elif self._add_global_imgfeat == "last":
+            masked_label[-1] = 0
         # change token to ablation token
         mix_features_pad[masked_label > 0] = self._avg_feature
         
@@ -632,8 +632,8 @@ class FlickrLang4VisDataset(Dataset):
         masked_label = np.logical_or(masked_label, (overlaps > overlap_threshold).max(1)[0])  # overlaps by thr w/ >= 1 ref boxes
         if self._add_global_imgfeat == "first":
             masked_label[0] = 0
-        else:
-            raise NotImplementedError
+        elif self._add_global_imgfeat == "last":
+            masked_label[-1] = 0
         # change token to mask token
         mix_features_pad[masked_label > 0] = 0
         # select target region
