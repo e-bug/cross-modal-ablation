@@ -124,7 +124,7 @@ class ImageFeaturesH5Reader(object):
 
                 image_cls = np.frombuffer(base64.b64decode(item["cls_prob"]), dtype=np.float32).reshape(-1, 1601)
                 obj_labels = np.frombuffer(base64.b64decode(item["objects_id"]), dtype=np.int64)
-                obj_confs = np.frombuffer(base64.b64decode(item["objects_conf"]), dtype=np.float32).reshape(-1, num_boxes - (self.add_global_imgfeat != ""))
+                obj_confs = np.frombuffer(base64.b64decode(item["objects_conf"]), dtype=np.float32).reshape(-1, num_boxes - (self.add_global_imgfeat is not None))
                 attr_labels = np.frombuffer(base64.b64decode(item["attrs_id"]))
                 attr_confs = np.frombuffer(base64.b64decode(item["attrs_conf"]))
                 image_attrs = np.frombuffer(base64.b64decode(item["attrs"]))
